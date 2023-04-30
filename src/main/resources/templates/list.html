@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista produktów</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+<h1 class="h1-list">Lista wszystkich produktów</h1>
+<a class="return" href="/">Powrót do strony głównej</a>
+<div class="products-list" th:each="product: ${products}">
+    <ul class="list-group">
+        <li th:text="|${product.name} ${product.price}zł - kategoria: ${product.category.getCategoryName()}|"></li>
+    </ul>
+</div>
+</body>
+</html>

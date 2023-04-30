@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Produkty - strona główna</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+<h1 class="h1">Witamy na naszej stronie z produktami!</h1>
+<div class="list-group">
+    <ul>
+        <li>
+            <a href="/list" class="item-list">
+                Wyświetl wszystkie produkty</a></li>
+        <li>
+            <a href="/list?category=FOODSTUFFS" class="item-list">
+                Wyświetl produkty z kategorii artykuły spożywcze</a>
+        </li>
+        <li>
+            <a href="/list?category=HOUSEHOLD" class="item-list">
+                Wyświetl produkty z kategorii artykuły gospodarstwa domowego</a>
+        </li>
+        <li>
+            <a href="/list?category=OTHER" class="item-list">
+                Wyświetl wszystkie produkty bez przypisanej kategorii</a>
+        </li>
+    </ul>
+</div>
+<form class="form" action="/add" method="post">
+    <h2 style="color: chocolate">Dodaj produkt do listy</h2>
+    <div>
+        <label for="name">Nazwa</label>
+        <input type="text" class="form-control" id="name" name="name">
+    </div>
+    <div>
+        <label for="price">Cena</label>
+        <input type="text" class="form-control" id="price" name="price">
+    </div>
+    <div>
+        <label for="category">Kategoria</label>
+        <select id="category" name="category">
+            <option hidden="hidden" disabled>Wybierz...</option>
+            <option value="FOODSTUFFS">artykuły spożywcze</option>
+            <option value="HOUSEHOLD">artykuły domowe</option>
+            <option value="OTHER">inne</option>
+        </select>
+    </div>
+    <input class="button" type="submit" value="Dodaj">
+</form>
+</body>
+</html>
