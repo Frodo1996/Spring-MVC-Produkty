@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Produkty - strona główna</title>
@@ -11,18 +11,15 @@
     <ul>
         <li>
             <a href="/list" class="item-list">
-                Wyświetl wszystkie produkty</a></li>
-        <li>
-            <a href="/list?category=FOODSTUFFS" class="item-list">
-                Wyświetl produkty z kategorii artykuły spożywcze</a>
+                Wyświetl wszystkie produkty</a>
         </li>
-        <li>
-            <a href="/list?category=HOUSEHOLD" class="item-list">
-                Wyświetl produkty z kategorii artykuły gospodarstwa domowego</a>
-        </li>
-        <li>
-            <a href="/list?category=OTHER" class="item-list">
-                Wyświetl wszystkie produkty bez przypisanej kategorii</a>
+        <li th:each="item: ${T(com.example.zadanie_produkty.Category).values()}">
+            <a
+               th:text="'Wyświetl produkty z kategorii: ' + ${item.categoryName}"
+               th:href="'/list?category=' + ${item.name()}"
+               class="item-list">
+            </a>
+            <br>
         </li>
     </ul>
 </div>
@@ -39,10 +36,10 @@
     <div>
         <label for="category">Kategoria</label>
         <select id="category" name="category">
-            <option hidden="hidden" disabled>Wybierz...</option>
-            <option value="FOODSTUFFS">artykuły spożywcze</option>
-            <option value="HOUSEHOLD">artykuły domowe</option>
-            <option value="OTHER">inne</option>
+            <option th:each="cat: ${T(com.example.zadanie_produkty.Category).values()}"
+                    th:text="${cat.categoryName}"
+                    th:value="${cat.name()}">
+            </option>
         </select>
     </div>
     <input class="button" type="submit" value="Dodaj">

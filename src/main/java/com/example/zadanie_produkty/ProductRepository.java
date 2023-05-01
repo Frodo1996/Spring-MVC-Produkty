@@ -9,6 +9,7 @@ import java.util.List;
 public class ProductRepository {
     private final List<Product> products;
 
+
     public ProductRepository() {
         products = new ArrayList<>();
         products.add(new Product("Spodnie jeansowe", 199.99, Category.OTHER));

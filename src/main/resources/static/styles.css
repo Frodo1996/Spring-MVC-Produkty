@@ -23,3 +23,9 @@
     margin: 20px;
     text-align: left;
 }
+.sum {
+    background-color: chocolate;
+    text-align: center;
+    color: white;
+    font-size: large
+}

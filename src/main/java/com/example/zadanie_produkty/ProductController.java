@@ -11,6 +11,7 @@ import java.util.List;
 @Controller
 public class ProductController {
 
+//    DecimalFormat decimalFormat = new DecimalFormat("#.##");
     private final ProductRepository productRepository;
 
     public ProductController(ProductRepository productRepository) {
@@ -25,13 +26,27 @@ public class ProductController {
     @GetMapping("/list")
     String productsList(Model model, @RequestParam(required = false) Category category) {
         List<Product> productList;
+        double sumOfPrices = 0;
         if (category != null) {
             productList = productRepository.findByCategory(category);
+            sumOfPrices = calculateSumOfPrices(productList);
         } else {
             productList = productRepository.allProducts();
+            sumOfPrices = calculateSumOfPrices(productList);
+//            sumOfPrices = Double.parseDouble(decimalFormat.format(sumOfPrices));
         }
+        long rounded = Math.round(sumOfPrices);
         model.addAttribute("products", productList);
+        model.addAttribute("sumOfPrices", rounded);
         return "list";
+    }
+
+    private static double calculateSumOfPrices(List<Product> productList) {
+        double sumOfPrices = 0;
+        for (Product product : productList) {
+            sumOfPrices += product.getPrice();
+        }
+        return sumOfPrices;
     }
 
     @PostMapping("/add")

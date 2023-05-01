@@ -13,5 +13,6 @@
         <li th:text="|${product.name} ${product.price}zł - kategoria: ${product.category.getCategoryName()}|"></li>
     </ul>
 </div>
+<p class="sum" th:text="'Suma cen produktów: ' + ${sumOfPrices.doubleValue()} + 'zł'"></p>
 </body>
 </html>
